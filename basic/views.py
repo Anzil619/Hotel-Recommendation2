@@ -69,7 +69,8 @@ def Homepage(request):
 
         df=pd.read_csv("./saved_models/clean_data.csv")
 
-        
+        df = df.drop(['review_date', 'lat', 'lng', 'total_number_of_reviews_reviewer_has_given', 'positive_review',
+                'negative_review','All_Review','reviewer_nationality'], axis=1)
         
 
         hotelLeisureCounts = df[df['tags'].str.contains('Leisure')].groupby('hotel_name')['hotel_name'].count().sort_values(ascending=False)
