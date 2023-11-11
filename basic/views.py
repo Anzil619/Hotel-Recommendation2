@@ -57,6 +57,7 @@ def Homepage(request):
                 adults_arr[0] = 1
             elif adults == 'couple':
                 adults_arr[1] = 1
+                
             elif adults == 'group':
                 adults_arr[2] = 1
 
@@ -68,8 +69,9 @@ def Homepage(request):
 
         df=pd.read_csv("./saved_models/clean_data.csv")
 
-        df = df.drop(['review_date', 'lat', 'lng', 'total_number_of_reviews_reviewer_has_given', 'positive_review',
-                'negative_review','All_Review','reviewer_nationality'], axis=1)
+        # df = df.drop(['review_date', 'lat', 'lng', 'total_number_of_reviews_reviewer_has_given', 'positive_review',
+        #         'negative_review','All_Review','reviewer_nationality'], axis=1)
+        
         
         hotelLeisureCounts = df[df['tags'].str.contains('Leisure')].groupby('hotel_name')['hotel_name'].count().sort_values(ascending=False)
         print("Leisure Counts: ", len(hotelLeisureCounts))
